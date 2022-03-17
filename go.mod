@@ -1,1 +1,1 @@
-module "go-mapcache"
+module "mapcache"

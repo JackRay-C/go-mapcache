@@ -3,7 +3,7 @@ package mapcache
 import (
 	h "container/heap"
 	"errors"
-	"go-mapcache/heap"
+	"mapcache/heap"
 	"sync"
 	"time"
 )
