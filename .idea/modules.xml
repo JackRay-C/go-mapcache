@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/go-mapcache.iml" filepath="$PROJECT_DIR$/.idea/go-mapcache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mapcache/.idea/mapcache.iml" filepath="$PROJECT_DIR$/../mapcache/.idea/mapcache.iml" />
     </modules>
   </component>
 </project>

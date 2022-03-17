@@ -1,4 +1,4 @@
-package heap
+package smallheap
 
 import (
 	"container/heap"

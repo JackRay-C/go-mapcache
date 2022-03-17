@@ -1,22 +1,22 @@
 package mapcache
 
 import (
-	h "container/heap"
+	"container/heap"
 	"errors"
-	"mapcache/heap"
+	"mapcache/smallheap"
 	"sync"
 	"time"
 )
 
 func NewCache() Cache {
 	g := &goMapCache{}
-	h.Init(&g.heap)
+	heap.Init(&g.h)
 	return g
 }
 
 type goMapCache struct {
 	m    sync.Map       // 键值对
-	heap heap.SmallHeap // 小顶堆
+	h 	 smallheap.SmallHeap // 小顶堆
 }
 
 type Cache interface {
@@ -32,11 +32,11 @@ func (c *goMapCache) SetExpire(key string, expire int) error {
 		return errors.New("this key is not exists! ")
 	}
 	// 2、存在的话将过期时间插入到堆中
-	h.Push(&c.heap, &heap.ExpireDict{Key: key, Expire: time.Duration(expire)})
+	heap.Push(&c.h, &smallheap.ExpireDict{Key: key, Expire: time.Duration(expire)})
 
 	// 3、取堆顶元素，设置定时器
 	go func() {
-		pop := h.Pop(&c.heap).(*heap.ExpireDict)
+		pop := heap.Pop(&c.h).(*smallheap.ExpireDict)
 		time.AfterFunc(pop.Expire, func() {
 			c.m.LoadAndDelete(pop.Key)
 		})
