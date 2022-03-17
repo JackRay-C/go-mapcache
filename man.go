@@ -1,4 +1,4 @@
-package go_mapcache
+package mapcache
 
 import (
 	h "container/heap"
